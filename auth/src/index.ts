@@ -11,20 +11,19 @@ import apiRoutes from "./routes";
 const app: Application = express();
 
 (async () => {
-    app.use(cors());
-    app.use(helmet());
-    app.use(compression());
-    app.use(express.json({ limit: "300kb" }));
-    app.use(express.urlencoded({ extended: false }));
-    app.use(morgan("common"));
+  app.use(cors());
+  app.use(helmet());
+  app.use(compression());
+  app.use(express.json({ limit: "300kb" }));
+  app.use(express.urlencoded({ extended: false }));
+  app.use(morgan("common"));
 
-    await databaseConnection();
+  await databaseConnection();
 
-    app.use(apiRoutes);
+  app.use(apiRoutes);
 
-    const PORT = process.env.PORT;
-    app.listen(PORT, () => console.log(`Server is running on 127.0.0.1:${PORT}`));
+  const PORT = process.env.PORT;
+  app.listen(PORT, () => console.log(`Server is running on 127.0.0.1:${PORT}`));
 })();
 
 export default app;
-
